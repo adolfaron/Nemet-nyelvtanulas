@@ -3,20 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Modul megtekintése</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <style>
-    iframe {
-      width: 100%;
-      height: 90vh;
-      border: none;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="bg-light">
     <div id="header-placeholder"></div>
 
     <script>
-    fetch('fejlec.html')
+    fetch('/fejlec.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;

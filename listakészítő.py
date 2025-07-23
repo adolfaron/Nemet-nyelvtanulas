@@ -6,7 +6,7 @@ import re
 
 # Modulok mappa útvonala
 sajat_ut = os.path.dirname(__file__)
-mappa = os.path.join(sajat_ut, "modulok")
+mappa = os.path.join(sajat_ut, "modulok/modulfajajlok")
 
 # Regex a <title> kiolvasásához
 title_regex = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
@@ -27,13 +27,13 @@ for fajlnev in os.listdir(mappa):
         cim = talalat.group(1).strip() if talalat else fajlnev
 
         modulok.append({
-            "fajl": f"modulok/{fajlnev}".replace("\\", "/"),
+            "fajl": f"/modulok/modulfajajlok/{fajlnev}".replace("\\", "/"),
             "cim": cim
         })
 
 
 # JSON mentés
-with open(os.path.join(sajat_ut, 'modulok.json'), 'w') as f:
+with open(os.path.join(sajat_ut, 'modulok/modulok.json'), 'w') as f:
     json.dump(modulok, f, indent=4, ensure_ascii=False)
 
 print(f"{len(modulok)} fájl feldolgozva, mentve a modulok.json fájlba.")
