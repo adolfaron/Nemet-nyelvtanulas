@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulok</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="bg-light">
+    <div id="header-placeholder"></div>
+
+    <script>
+    fetch('/fejlec.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+    });
+    </script>
+    
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold">Modulok</h1>
+            <p class="lead text-muted">Német nyelvtani témák, egyszerűen és érthetően.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="list-group shadow" id="modulok">
+                    <!-- Ide jöhetnek majd újabb modulok -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        fetch("modulok.json")
+        .then(response => response.json())
+        .then(modulok => {
+            const div = document.getElementById("modulok");
+            modulok.forEach(modul => {
+            const a = document.createElement("a");
+            a.href = `/modulok/Modul_sablon.html?fajl=${encodeURIComponent(modul.fajl)}`;
+            a.className = "list-group-item list-group-item-action";
+            a.textContent = modul.cim;
+            div.appendChild(a);
+            });
+        });
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

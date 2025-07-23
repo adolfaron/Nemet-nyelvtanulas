@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Modul megtekintése</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+    iframe {
+      width: 100%;
+      height: 90vh;
+      border: none;
+    }
+  </style>
+</head>
+<body class="bg-light">
+    <div id="header-placeholder"></div>
+
+    <script>
+    fetch('fejlec.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+    });
+    </script>
+  <div class="container py-4">
+    <iframe id="modulIframe" src=""></iframe>
+  </div>
+
+  <script>
+    // URL-ből kiszedjük a paramétert
+    const urlParams = new URLSearchParams(window.location.search);
+    const fajl = urlParams.get("fajl");
+
+    if (fajl) {
+      document.getElementById("modulIframe").src = fajl;
+    } else {
+      document.body.innerHTML += "<p class='text-danger'>Hiba: nincs megadva fájl!</p>";
+    }
+  </script>
+</body>
+</html>
