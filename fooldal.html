@@ -11,7 +11,7 @@
     <div id="header-placeholder"></div>
 
     <script>
-    fetch('/fejlec.html')
+    fetch('fejlec.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
