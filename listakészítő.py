@@ -14,13 +14,22 @@ title_regex = re.compile(r"<title>(.*?)</title>", re.IGNORECASE | re.DOTALL)
 # Lista a kimeneti JSON-hoz
 modulok = []
 
+# Több kódolás kipróbálása
+def beolvas_tartalom(fajl_utvonal):
+    for encoding in ("utf-8", "utf-8-sig", "cp1250", "latin-1"):
+        try:
+            with open(fajl_utvonal, "r", encoding=encoding) as f:
+                return f.read()
+        except UnicodeDecodeError:
+            continue
+    raise UnicodeDecodeError("Nem sikerült értelmezni a fájlt semmilyen ismert kódolással.")
+
 for fajlnev in os.listdir(mappa):
     fajl_utvonal = os.path.join(mappa, fajlnev)
 
     if os.path.isfile(fajl_utvonal) and fajlnev.endswith((".html", ".htm")):
-        # Fájl tartalom beolvasása
-        with open(fajl_utvonal, "r") as f:
-            tartalom = f.read()
+        # Fájl tartalom beolvasása többféle kódolással
+        tartalom = beolvas_tartalom(fajl_utvonal)
 
         # Title mező keresése
         talalat = title_regex.search(tartalom)
@@ -31,9 +40,8 @@ for fajlnev in os.listdir(mappa):
             "cim": cim
         })
 
-
-# JSON mentés
-with open(os.path.join(sajat_ut, 'modulok/modulok.json'), 'w') as f:
+# JSON mentés UTF-8 kódolással
+with open(os.path.join(sajat_ut, 'modulok/modulok.json'), 'w', encoding="utf-8") as f:
     json.dump(modulok, f, indent=4, ensure_ascii=False)
 
 print(f"{len(modulok)} fájl feldolgozva, mentve a modulok.json fájlba.")

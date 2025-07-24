@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nyelvtani táblázatok</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="bg-light">
     <div id="header-placeholder"></div>
 
     <script>
-    fetch('../fejlec.html')
+    fetch('/fejlec.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
@@ -70,7 +70,7 @@
 
     </div>
 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
