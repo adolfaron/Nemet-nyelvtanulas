@@ -1,10 +1,10 @@
 [
     {
-        "fajl": "/modulok/modulfajajlok/ez modul.htm",
+        "fajl": "../modulok/modulfajajlok/ez modul.htm",
         "cim": "Egy modul"
     },
     {
-        "fajl": "/modulok/modulfajajlok/wurde_infinitiv.html",
+        "fajl": "../modulok/modulfajajlok/wurde_infinitiv.html",
         "cim": "Würde + Infinitiv"
     }
 ]
