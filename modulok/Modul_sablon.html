@@ -3,18 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Modul megtekintése</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/app.css">
 </head>
 <body class="bg-light">
     <div id="header-placeholder"></div>
 
     <script>
-    fetch('../fejlec.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-    });
+        const prefix = "../";
+
+        fetch(prefix + 'fejlec.html')
+        .then(response => response.text())
+        .then(data => {
+            // Létrehozunk egy ideiglenes DOM elemet
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = data;
+
+            // Módosítjuk az összes <a> elem href attribútumát
+            const links = tempDiv.querySelectorAll('a[href]');
+            links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href.startsWith('http') && !href.startsWith(prefix)) {
+                link.setAttribute('href', prefix + href);
+            }
+            });
+
+            // Végül beillesztjük a módosított HTML-t a helyére
+            document.getElementById('header-placeholder').innerHTML = tempDiv.innerHTML;
+        });
     </script>
   <div class="container py-4">
     <iframe id="modulIframe" src=""></iframe>
