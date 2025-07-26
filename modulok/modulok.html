@@ -55,7 +55,7 @@
             const div = document.getElementById("modulok");
             modulok.forEach(modul => {
             const a = document.createElement("a");
-            a.href = `/modulok/Modul_sablon.html?fajl=${encodeURIComponent(modul.fajl)}`;
+            a.href = `../modulok/Modul_sablon.html?fajl=${encodeURIComponent(modul.fajl)}`;
             a.className = "list-group-item list-group-item-action";
             a.textContent = modul.cim;
             div.appendChild(a);
